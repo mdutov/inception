@@ -20,13 +20,13 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'DVSGroupDB' );
+define( 'DB_NAME', 'tcynthia' );
 
 /** MySQL database username */
-define( 'DB_USER', 'dvs' );
+define( 'DB_USER', 'tcynthia' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'password' );
+define( 'DB_PASSWORD', 'tcynthia' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'mariadb' );
@@ -48,14 +48,14 @@ define( 'WP_ALLOW_REPAIR', true );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '):Uw9 :|7$m3yy=c^IM%d8}zG6yXY%25SDUyr.r#GcDP)[b25Yn$sDLNwR~I=kwq' );
-define( 'SECURE_AUTH_KEY',  'lBWxAzhu=StQ(s-[t_D8yH8_`0NiM~d[m q<{Hri]n#UM3J;@x[ne;,k<~cN`~%,' );
-define( 'LOGGED_IN_KEY',    ' /e+%ecWs`>hA<s`|+7rmujt>3MA}GD*n=D7W%$8h*Xc!jP?hn+fw0#;;g{Ywl@k' );
-define( 'NONCE_KEY',        ' -cX{xQc|GjD$=kXd,|lUX5)*oT)ru3^px-iU{q;`1If22EqIwA0/lPIIbpbtB=C' );
-define( 'AUTH_SALT',        'U9LX s1@q6$[*VV,MUhL7tS@;I9t_u*uDQIfZdG.ei1Amy$*.RI_TSTz#y=X.>Wq' );
-define( 'SECURE_AUTH_SALT', '0<MR&l4v=cZ)8Ke/#ip>2<Ed@ j<#pvLaOMc-jEFM9^tr`X*T2qDIB@)gg.0<e2V' );
-define( 'LOGGED_IN_SALT',   'xSHh4B]r[~)h%n$f(dCt;mD}#q gy$<{ >qGgPS>XH*]jH>W<!10>H<_16l{(OdP' );
-define( 'NONCE_SALT',       '7Ea$kvU|lkO8&X]b7^#K+w! lH2)SOelLiaYYX(Zz)Ebk_]-#m,J&aM<*JedFa| ' );
+define('AUTH_KEY',         '~NjZsy)U>;ZNv3FxJn5MzV1c]zEFLcjgiJ.+Ps_OSppYH*{$SqDJ|~KFKkB5sEV2');
+define('SECURE_AUTH_KEY',  '4Lr)TeUks{s*W/6R#M}YlEg)ucFU9<bu>yv~g|vLLh.m> W}Xd9}G*>uL} @OcvZ');
+define('LOGGED_IN_KEY',    '7-%JhY>lb0a;LI]=NFwZnw^yruA&h6)p|s37&3UrOZV-K7(#f|]2@-o<j]+,Aa_.');
+define('NONCE_KEY',        '0LJ+%V9LD^4A+AB<P`+|-n+SC~2I#-ls3XxY/Vt27o-c%Wl,95stD+.3C>,WD1#e');
+define('AUTH_SALT',        'ICe^$CH+vVp EYDqY*V&iv1$iZ.HY:ViyS/|v4aVxN;N0=h|7LLV<0|7}q#>xN<g');
+define('SECURE_AUTH_SALT', 'pxn6|m{!.:Fh@!/7)PG7* RT@8unT[+?fpTIpO8-=+[vWx&G%*%APyi+&X-LP-xu');
+define('LOGGED_IN_SALT',   '/dPgk-qY|nsmgrv85Un].!j=mYU^7H5YC_{$-RFb<cx89^?k)H/m14n:G_OSqI+a');
+define('NONCE_SALT',       '3c7{?1588%{M,c;YF2^B|0D0gJy>{}p4mRcP^Pcd2gbdL}`kxU(wB2#4dIeGsVsk');
 
 /**#@-*/
 

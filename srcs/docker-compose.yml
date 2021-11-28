@@ -1,57 +1,72 @@
 version: "3.5"
 
 networks:
-        localhost:
-                name: inet
+        tcynthia.42.fr:
+                name: ${NETWORK}
+
+services:
+        mariadb:  
+                container_name: ${DB_HOST}
+                build: ./mariadb
+                image: ${DB_HOST}
+                volumes:
+                        - mariadb:/var/lib/mysql
+                networks:
+                        - ${NETWORK}
+                ports:
+                    - "5121:3306"
+                restart: always
+                environment:
+                        DB_NAME: ${DB_NAME}
+                        DB_USER: ${DB_USER}
+                        DB_PASSWORD: ${DB_PASSWORD}
+        wordpress:
+                depends_on:
+                        - mariadb
+                container_name: wordpress
+                build: ./wordpress
+                image: wordpress
+                volumes:
+                        - wordpress:/var/www/wordpress
+                networks:
+                        - ${NETWORK}
+                ports:
+                        - "5221:9000"
+                restart: always
+                environment:
+                        COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+                        DB_HOST: ${DB_HOST}
+                        DB_NAME: ${DB_NAME}
+                        DB_USER: ${DB_USER}
+                        DB_PASSWORD: ${DB_PASSWOR}
+        nginx:
+                depends_on:
+                        - wordpress
+                domainname: ${NETWORK}
+                hostname: ${NETWORK}
+                container_name: nginx
+                build: ./nginx
+                image: nginx
+                volumes:
+                        - wordpress:/var/www/wordpress
+                networks:
+                        - ${NETWORK}
+                ports:
+                        - "443:443"
+                restart: always
 
 volumes:
         wordpress:
                 name: wordpress
                 driver: local
                 driver_opts:
-                        device: /home/buthor/data/wordpress
+                        device: /home/${USERNAME}/data/wordpress
                         o: bind
                         type: none
         mariadb:
-                name: mariadb
+                name: ${DB_HOST}
                 driver: local
                 driver_opts:
-                        device: /home/buthor/data/mariadb
+                        device: /home/${USERNAME}/data/mariadb
                         o: bind
                         type: none
-
-
-services:
-        nginx:
-                depends_on:
-                        - wordpress
-                container_name: nginx_debian
-                build: ./nginx
-                image: nginx
-                ports:
-                        - "443:443"
-                volumes:
-                        - wordpress:/var/www/wordpress
-                networks:
-                        - localhost
-                restart: always
-        mariadb:  
-                container_name: mariadb_debian
-                build: ./mariadb
-                volumes:
-                        - mariadb:/var/lib/mysql
-                networks:
-                        - localhost
-                image: mariadb
-                restart: always
-        wordpress:
-                depends_on:
-                        - mariadb
-                container_name: wordpress_debian
-                build: ./wordpress
-                image: wordpress
-                volumes:
-                        - wordpress:/var/www/wordpress
-                networks:
-                        - localhost
-                restart: always

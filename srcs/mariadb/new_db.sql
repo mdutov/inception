@@ -1,4 +1,4 @@
-CREATE DATABASE tcynthia;
+CREATE DATABASE db_name;
 CREATE USER 'tcynthia'@'%' IDENTIFIED BY 'tcynthia';
 GRANT ALL PRIVILEGES ON tcynthia.* TO 'tcynthia'@'%';
 FLUSH PRIVILEGES;

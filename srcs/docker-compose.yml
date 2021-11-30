@@ -11,9 +11,9 @@ services:
                 domainname: ${NETWORK}
                 hostname: ${NETWORK}
                 container_name: nginx
-                build: ./nginx
+                build: ./requirements/nginx
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html/wordpress
                 networks:
                         - ${NETWORK}
                 ports:
@@ -28,9 +28,9 @@ services:
                 depends_on:
                         - mariadb
                 container_name: wordpress
-                build: ./wordpress
+                build: ./requirements/wordpress
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html/wordpress
                 networks:
                         - ${NETWORK}
                 deploy:
@@ -41,7 +41,7 @@ services:
                   - .env
         mariadb:  
                 container_name: ${DB_HOST}
-                build: ./mariadb
+                build: ./requirements/mariadb
                 volumes:
                         - mariadb:/var/lib/mysql
                 networks:

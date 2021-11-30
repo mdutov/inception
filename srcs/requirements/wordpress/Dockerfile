@@ -14,5 +14,7 @@ RUN rm -f /var/www/wordpress/wp-config-sample.php
 
 RUN mkdir ./run/php/
 
+EXPOSE 9000
+
 COPY ./tools/start.sh /tmp/
 CMD bash /tmp/start.sh

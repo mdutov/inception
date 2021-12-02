@@ -1,4 +1,5 @@
 DOCKER-COMPOSE_FILE=./srcs/docker-compose.yml
+HOME=tcynthia
 
 all:
 	sudo mkdir ${HOME}/data || true

@@ -13,7 +13,7 @@ images:
 ls:
 	sudo docker network ls
 down:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down --force
 up:
 	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 re:

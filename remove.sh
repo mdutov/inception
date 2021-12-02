@@ -6,4 +6,5 @@
 	sudo rm -rf ${HOME}/data/mariadb || true
 	sudo rm -rf ${HOME}/data/wordpress || true
 	sudo rm -rf ${HOME}/data || true
+	sudo docker volume prune --force
 	sudo docker system prune -a --force

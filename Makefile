@@ -1,5 +1,5 @@
 DOCKER-COMPOSE_FILE=./srcs/docker-compose.yml
-HOME=tcynthia
+HOME=/home/tcynthia
 
 all:
 	sudo mkdir ${HOME}/data || true
@@ -13,7 +13,7 @@ images:
 ls:
 	sudo docker network ls
 down:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down --force
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down
 up:
 	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 re:

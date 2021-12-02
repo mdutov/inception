@@ -12,8 +12,8 @@ RUN chmod +x /var/www/start.sh
 
 EXPOSE 9000
 
-# ENTRYPOINT [ "/var/www/start.sh" ]
+ENTRYPOINT [ "/var/www/start.sh" ]
 
-# CMD [ "/usr/sbin/php-fpm7.3", "--nodaemonize" ]
+CMD [ "/usr/sbin/php-fpm7.3", "--nodaemonize" ]
 
-CMD [ "/var/www/start.sh" ]
+# CMD [ "/var/www/start.sh" ]

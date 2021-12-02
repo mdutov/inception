@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/redis/redis.cnf"
-# sed -i "s/supervised no/supervised systemd/" "/etc/redis/redis.cnf"
+sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/redis/redis.cnf"
+sed -i "s/supervised no/supervised systemd/" "/etc/redis/redis.cnf"
 
 sed -i "s/\${DB_NAME}/${DB_NAME}/" "/var/www/wp-config.php"
 sed -i "s/\${DB_USER}/${DB_USER}/" "/var/www/wp-config.php"
@@ -33,5 +33,5 @@ fi
     service redis-server start
     exec "$@"
 
-/usr/sbin/php-fpm7.3 --nodaemonize
-tail -f /dev/null;
+# /usr/sbin/php-fpm7.3 --nodaemonize
+# tail -f /dev/null;

@@ -1,15 +1,15 @@
 <?php
 
-define( 'DB_NAME', 'tcynthia' );
+define( 'DB_NAME', '${DB_NAME}' );
 
 /** MySQL database username */
-define( 'DB_USER', 'tcynthia' );
+define( 'DB_USER', '${DB_USER}' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'tcynthia' );
+define( 'DB_PASSWORD', '${DB_PASSWORD}' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', '${DB_HOST}' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

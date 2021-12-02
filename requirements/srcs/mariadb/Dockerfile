@@ -12,7 +12,3 @@ EXPOSE 3306
 ENTRYPOINT [ "/var/www/start.sh" ]
 
 CMD [ "mysqld" ]
-
-# RUN service mysql start
-
-# CMD /usr/bin/mysqld_safe && bash /start.sh

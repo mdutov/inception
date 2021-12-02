@@ -6,3 +6,4 @@
 	sudo rm -rf ${HOME}/data/wordpress || true
 	sudo rm -rf ${HOME}/data || true
 	sudo docker system prune -a --force
+	

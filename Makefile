@@ -17,7 +17,7 @@ down:
 up:
 	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 re:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} --build
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up --build
 fclean: down
 	bash remove.sh
 full-re: fclean all

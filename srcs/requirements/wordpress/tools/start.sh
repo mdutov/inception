@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/redis/redis.cnf"
-sed -i "s/supervised no/supervised systemd/" "/etc/redis/redis.cnf"
+# sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/redis/redis.cnf"
+# sed -i "s/supervised no/supervised systemd/" "/etc/redis/redis.cnf"
 
-sed -i "s/\${DB_NAME}/${DB_NAME}/" "/var/www/wp=config.php"
-sed -i "s/\${DB_USER}/${DB_USER}/" "/var/www/wp=config.php"
-sed -i "s/\${DB_PASSWORD}/${DB_PASSWORD}/" "/var/www/wp=config.php"
-sed -i "s/\${DB_HOST}/${DB_HOST}/" "/var/www/wp=config.php"
+sed -i "s/\${DB_NAME}/${DB_NAME}/" "/var/www/wp-config.php"
+sed -i "s/\${DB_USER}/${DB_USER}/" "/var/www/wp-config.php"
+sed -i "s/\${DB_PASSWORD}/${DB_PASSWORD}/" "/var/www/wp-config.php"
+sed -i "s/\${DB_HOST}/${DB_HOST}/" "/var/www/wp-config.php"
 
 mkdir -p /run/php/
 touch /run/php/php7.3-fpm.pid
@@ -19,8 +19,8 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     chmod +x wp-cli.phar
     mv wp-cli.phar /usr/local/bin/wp
     cd var/www/html/
-    wp core download —-allow-root
-    mv /var/www/wp-config.php /var/www/htm1/
+    wp core download --allow-root
+    mv /var/www/wp-config.php /var/www/html/
     wp core install --allow-root \
     --url="${DOMAIN_NAME}" \
     --title="Tcynthia's site" \
@@ -31,6 +31,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         ${CUSTOM_USER_EMAIL} --user_pass=${CUSTOM_USER_PASSWORD}
 fi
     service redis-server start
+    exec "$@"
 
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm7.3 --nodaemonize
 tail -f /dev/null;

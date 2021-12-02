@@ -8,7 +8,6 @@ services:
         mariadb:  
                 container_name: ${DB_HOST}
                 build: ./requirements/${DB_HOST}
-                image: ${DB_HOST}
                 volumes:
                         - ${DB_HOST}:/var/lib/mysql
                 networks:
@@ -17,28 +16,24 @@ services:
                 env_file:
                         - .env
         wordpress:
+                container_name: wordpress
                 depends_on:
                         - ${DB_HOST}
-                container_name: wordpress
                 build: ./requirements/wordpress
-                image: wordpress
                 volumes:
-                        - wordpress:/var/www/html/wordpress
+                        - wordpress:/var/www/html
                 networks:
                         - ${NETWORK}
                 restart: always
                 env_file:
                         - .env
         nginx:
+                container_name: nginx
                 depends_on:
                         - wordpress
-                domainname: ${NETWORK}
-                hostname: ${NETWORK}
-                container_name: nginx
                 build: ./requirements/nginx
-                image: nginx
                 volumes:
-                        - wordpress:/var/www/html/wordpress
+                        - wordpress:/var/www/html
                 networks:
                         - ${NETWORK}
                 ports:

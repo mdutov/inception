@@ -2,8 +2,8 @@ FROM debian:buster
 
 RUN apt-get update
 RUN apt-get -y upgrade
-
-RUN apt-get install -y default-mysql-server apt-utils
+RUN apt-get install -y apt-utils default-mysql-server
+RUN apt-get update
 
 COPY ./tools/start.sh /var/www/
 

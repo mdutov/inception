@@ -1,31 +1,24 @@
 DOCKER-COMPOSE_FILE=requirements/docker-compose.yml
 
 all:
-	mkdir ${HOME}/data || true
-	mkdir ${HOME}/data/mariadb || true
-	mkdir ${HOME}/data/wordpress || true
-	docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
+	sudo mkdir ${HOME}/data || true
+	sudo mkdir ${HOME}/data/mariadb || true
+	sudo mkdir ${HOME}/data/wordpress || true
+	make up
 ps:
-	docker-compose -f ${DOCKER-COMPOSE_FILE} ps
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} ps
 images:
-	docker-compose -f ${DOCKER-COMPOSE_FILE} images
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} images
 ls:
-	docker network ls
+	sudo docker network ls
 down:
-	docker-compose -f ${DOCKER-COMPOSE_FILE} down
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down
 up:
-	docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 re:
-	docker-compose -f ${DOCKER-COMPOSE_FILE} --build
+	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} --build
 fclean: down
-	sudo docker rm -f $(sudo docker ps -qa) || true
-	sudo docker rm -f $(sudo docker ps -ls) || true
-	sudo docker rmi -f $(sudo docker images -qa) || true
-	sudo docker volume rm $(sudo docker volume ls -q) || true
-	sudo rm -rf ${HOME}/data/mariadb || true
-	sudo rm -rf ${HOME}/data/wordpress || true
-	sudo rm -rf ${HOME}/data || true
-	sudo docker system prune -a --force
+	bash remove.sh
 full-re: fclean all
 git:
 	git add .

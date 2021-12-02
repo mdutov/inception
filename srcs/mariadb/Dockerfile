@@ -1,12 +1,18 @@
 FROM debian:buster
 
-RUN apt-get update
-RUN apt-get install mariadb-server -y
+RUN apt-get update && apt-get -yu upgrade
+RUN apt-get install -y default-mysql-server 
 
-COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/
-COPY ./createdb.sql /
+COPY ./tools/start.sh /var/www/
 
-RUN service mysql start && mysql < createdb.sql
-RUN rm -f createdb.sql
+RUN chmod +x /var/www/start.sh
 
-CMD /usr/bin/mysqld_safe
+EXPOSE 3306
+
+ENTRYPOINT [ "/var/www/start.sh" ]
+
+CMD [ "mysqld" ]
+
+# RUN service mysql start
+
+# CMD /usr/bin/mysqld_safe && bash /start.sh

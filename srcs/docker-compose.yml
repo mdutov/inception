@@ -1,7 +1,7 @@
 version: "3.9"
 
 networks:
-        tcynthia.42.fr:
+        net_inception:
                 name: ${NETWORK}
 
 services:
@@ -14,10 +14,8 @@ services:
                 networks:
                         - ${NETWORK}
                 restart: always
-                environment:
-                        DB_NAME: ${DB_NAME}
-                        DB_USER: ${DB_USER}
-                        DB_PASSWORD: ${DB_PASSWORD}
+                env_file:
+                        - .env
         wordpress:
                 depends_on:
                         - mariadb
@@ -28,15 +26,9 @@ services:
                         - wordpress:/var/www/wordpress
                 networks:
                         - ${NETWORK}
-                ports:
-                        - "5221:9000"
                 restart: always
-                environment:
-                        COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
-                        DB_HOST: ${DB_HOST}
-                        DB_NAME: ${DB_NAME}
-                        DB_USER: ${DB_USER}
-                        DB_PASSWORD: ${DB_PASSWOR}
+                env_file:
+                        - .env
         nginx:
                 depends_on:
                         - wordpress
@@ -52,6 +44,8 @@ services:
                 ports:
                         - "443:443"
                 restart: always
+                env_file:
+                        - .env
 
 volumes:
         wordpress:

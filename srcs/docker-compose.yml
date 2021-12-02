@@ -7,7 +7,7 @@ networks:
 services:
         mariadb:  
                 container_name: ${DB_HOST}
-                build: ./${DB_HOST}
+                build: ./requirements/${DB_HOST}
                 image: ${DB_HOST}
                 volumes:
                         - ${DB_HOST}:/var/lib/mysql
@@ -24,7 +24,7 @@ services:
                 depends_on:
                         - ${DB_HOST}
                 container_name: wordpress
-                build: ./wordpress
+                build: ./requirements/wordpress
                 image: wordpress
                 volumes:
                         - wordpress:/var/www/html/wordpress
@@ -43,7 +43,7 @@ services:
                 domainname: ${NETWORK}
                 hostname: ${NETWORK}
                 container_name: nginx
-                build: ./nginx
+                build: ./requirements/nginx
                 image: nginx
                 volumes:
                         - wordpress:/var/www/html/wordpress

@@ -7,26 +7,34 @@ networks:
 services:
         mariadb:  
                 container_name: ${DB_HOST}
-                build: ./mariadb
+                build: ./${DB_HOST}
                 image: ${DB_HOST}
                 volumes:
-                        - mariadb:/var/lib/mysql
+                        - ${DB_HOST}:/var/lib/mysql
                 networks:
                         - ${NETWORK}
-                restart: always
+                deploy:
+                        restart_policy:
+                                condition: on-failure
+                                delay: 5s
+                                max_attempts: 3
                 env_file:
                         - .env
         wordpress:
                 depends_on:
-                        - mariadb
+                        - ${DB_HOST}
                 container_name: wordpress
                 build: ./wordpress
                 image: wordpress
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html/wordpress
                 networks:
                         - ${NETWORK}
-                restart: always
+                deploy:
+                        restart_policy:
+                                condition: on-failure
+                                delay: 5s
+                                max_attempts: 3
                 env_file:
                         - .env
         nginx:
@@ -38,12 +46,16 @@ services:
                 build: ./nginx
                 image: nginx
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html/wordpress
                 networks:
                         - ${NETWORK}
                 ports:
                         - "443:443"
-                restart: always
+                deploy:
+                        restart_policy:
+                                condition: on-failure
+                                delay: 5s
+                                max_attempts: 3
                 env_file:
                         - .env
 

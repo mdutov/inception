@@ -3,7 +3,7 @@ FROM debian:buster
 RUN apt-get -y update
 RUN apt-get -y upgrade
 
-RUN apt-get install -y php-fpm php-mysql php-mbstring php-gettext
+RUN apt-get install -y apt-utils php-fpm php-mysql php-mbstring php-gettext
 RUN apt-get install -y redis-server php-redis
 
 COPY ./tools/ /var/www/

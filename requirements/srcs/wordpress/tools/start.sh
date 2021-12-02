@@ -24,3 +24,5 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     --admin_email="${ADMIN_EMAIL}"
     wp user create --allow-root ${CUSTOM_USER} \
         ${CUSTOM_USER_EMAIL} --user_pass=${CUSTOM_USER_PASSWORD}
+fi
+    service redis-server start

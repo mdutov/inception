@@ -31,3 +31,6 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         ${CUSTOM_USER_EMAIL} --user_pass=${CUSTOM_USER_PASSWORD}
 fi
     service redis-server start
+
+/usr/sbin/php-fpm7.3 -F
+tail -f /dev/null;

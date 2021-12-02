@@ -19,3 +19,6 @@ fi
 chmod +x /var/run/mysqld
 chown -R  mysql /var/run/mysqld
 exec "%@"
+
+mysqld
+tail -f /dev/null;

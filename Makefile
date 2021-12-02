@@ -1,4 +1,4 @@
-DOCKER-COMPOSE_FILE=./requirements/docker-compose.yml
+DOCKER-COMPOSE_FILE=requirements/docker-compose.yml
 
 all:
 	mkdir ${HOME}/data || true

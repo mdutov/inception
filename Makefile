@@ -7,17 +7,19 @@ all:
 	sudo mkdir ${HOME}/data/wordpress || true
 	make up
 ps:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} ps
+	docker-compose -f ${DOCKER-COMPOSE_FILE} ps
 images:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} images
+	docker-compose -f ${DOCKER-COMPOSE_FILE} images
 ls:
-	sudo docker network ls
+	docker network ls
 down:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} down
+	docker-compose -f ${DOCKER-COMPOSE_FILE} down
 up:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
+	docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 re:
-	sudo docker-compose -f ${DOCKER-COMPOSE_FILE} up --build
+	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build
+rm: down
+	docker rm mariadb nginx wordpress
 fclean: down
 	bash remove.sh
 full-re: fclean all

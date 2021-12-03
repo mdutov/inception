@@ -7,15 +7,14 @@ chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -d var/lib/mysql/mariadb ]; then
 service mysql start
+mysql -u root -e "SET PASSWORD FOR root@localhost = PASSWORD('$DB_ROOT_PASSWORD')"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* to 'root'@'localhost'"
+mysql -u root -e "FLUSH PRIVILEGES"
+mysqladmin -u root password $DB_ROOT_PASSWORD
 mysql -u root -e "CREATE DATABASE IF NOT EXIST $DB_NAME"
 mysql -u root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' INDENTIFIED BY '$DB_USER_PASSWORD'"
 mysql -u root -e "GRAND ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'wp.mariadb_inception' IDENTIFIED BY '$DB_USER_PASSWORD'"
 mysql -u root -e "FLUSH PRIVILEGES"
-
-mysql -u root -e "SET PASSWORD FOR root@localhost = PASSWORD('$DB_USER_PASSWORD')"
-mysql -u root -e "FLUSH PRIVILEGES"
-
-mysqladmin -u root password $DB_USER_PASSWORD
 service mysql stop
 else
 mkdir /var/run/mysqld

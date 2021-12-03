@@ -14,9 +14,11 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 php wp-cli.phar --info
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
+wp core download --allow-root
 wp core install --allow-root --url=${DOMAIN_NAME} --title=${TITLE} --admin_user=${ADMIN_USER} --admin_password=${USERNAME} --admin_email=${ADMIN_EMAIL}
-wp user create --allow-root ${CUSTOM_USER} ${CUSTOM_USER_EMAIL} --user_password=${CUSTOM_USER_PASSWORD}
+wp user create --allow-root ${CUSTOM_USER} ${CUSTOM_USER_EMAIL} --user_pass=${CUSTOM_USER_PASSWORD}
 
 # --role=author
+# --allow-root
 
 /usr/sbin/php-fpm7.4 -F

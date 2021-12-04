@@ -11,6 +11,9 @@ mkdir:
 up:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
 
+stop:
+	docker-compose -f ${DOCKER-COMPOSE_FILE} stop
+
 down:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} down
 

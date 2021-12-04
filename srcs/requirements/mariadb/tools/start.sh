@@ -1,17 +1,17 @@
-cd /tmp/
+#!bin/env bash
 
-sed -i -e "s/\${DB_NAME}/${DB_NAME}/g" createdb.sql
-sed -i -e "s/\${DB_USER}/${DB_USER}/g" createdb.sql
-sed -i -e "s/\${DB_PASSWORD}/${DB_PASSWORD}/g" createdb.sql
-sed -i -e "s/\${DB_ROOT}/${DB_HOST}/g" createdb.sql
-sed -i -e "s/\${DB_ROOT_PASSWORD}/${DB_HOST}/g" createdb.sql
+mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/
 
+if ! [ -d "var/lib/mysql/mariadb" ]; then
 service mysql start
-
-cp 50-server.cnf /etc/mysql/mariadb.conf.d/
-mysql < createdb.sql
-rm -f createdb.sql
-
+sed -i -e "s/\${DB_NAME}/${DB_NAME}/g" /tmp/createdb.sql
+sed -i -e "s/\${DB_USER}/${DB_USER}/g" /tmp/createdb.sql
+sed -i -e "s/\${DB_PASSWORD}/${DB_PASSWORD}/g" /tmp/createdb.sql
+sed -i -e "s/\${DB_ROOT}/${DB_HOST}/g" /tmp/createdb.sql
+sed -i -e "s/\${DB_ROOT_PASSWORD}/${DB_HOST}/g" /tmp/createdb.sql
+mysql < /tmp/createdb.sql
 service mysql stop
+fi
+rm -f /tmp/createdb.sql /tmp/50-server.cnf
 
 /usr/bin/mysqld_safe

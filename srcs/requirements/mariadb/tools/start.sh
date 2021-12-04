@@ -8,7 +8,7 @@ sed -i -e "s/\${DB_NAME}/${DB_NAME}/g" /tmp/createdb.sql
 sed -i -e "s/\${DB_USER}/${DB_USER}/g" /tmp/createdb.sql
 sed -i -e "s/\${DB_PASSWORD}/${DB_PASSWORD}/g" /tmp/createdb.sql
 sed -i -e "s/\${DB_ROOT}/${DB_HOST}/g" /tmp/createdb.sql
-sed -i -e "s/\${DB_ROOT_PASSWORD}/${DB_HOST}/g" /tmp/createdb.sql
+sed -i -e "s/\${DB_ROOT_PASSWORD}/${DB_ROOT_PASSWORD}/g" /tmp/createdb.sql
 mysql < /tmp/createdb.sql
 service mysql stop
 fi

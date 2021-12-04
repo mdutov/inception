@@ -17,10 +17,13 @@ down:
 ps:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} ps
 
+docps:
+	docker ps -a
+
 images:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} images
 
-image:
+docimages:
 	docker images
 
 ls:

@@ -2,10 +2,10 @@ FROM debian:buster
 
 LABEL maintainer="tcynthia"
 
-RUN apt-get update
-RUN apt-get install mariadb-server -y
+RUN apt -y update
+RUN apt install -y mariadb-server
+RUN apt -y update
 
-COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY ./tools/* /tmp/
 
 EXPOSE 3306

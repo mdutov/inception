@@ -2,7 +2,7 @@ server {
     listen					443 ssl;
     listen					[::]:443 ssl;
 
-    server_name				tcynthia.42.fr;
+    server_name				tcynthia.42.fr	localhost;
 
     ssl						on;
     ssl_certificate_key		/etc/ssl/private/nginx.key;

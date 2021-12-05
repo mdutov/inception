@@ -36,7 +36,7 @@ lsvol:
 	docker volume ls
 
 re: down
-	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build -d
+	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build 
 
 fclean: down
 	bash remove.sh

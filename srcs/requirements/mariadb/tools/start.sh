@@ -1,6 +1,6 @@
 #!bin/env bash
 
-mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/
+cp /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 if ! [ -d "var/lib/mysql/mariadb" ]; then
 service mysql start

@@ -33,7 +33,7 @@ ls:
 	docker network ls
 
 re: down
-	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build
+	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build -d
 
 fclean: down
 	bash remove.sh

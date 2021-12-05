@@ -29,8 +29,11 @@ images:
 docimages:
 	docker images
 
-ls:
+lsnet:
 	docker network ls
+
+lsvol:
+	docker volume ls
 
 re: down
 	docker-compose -f ${DOCKER-COMPOSE_FILE} up --build -d

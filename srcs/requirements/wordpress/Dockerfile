@@ -3,7 +3,7 @@ FROM debian
 LABEL maintainer="tcynthia"
 
 RUN apt -y update
-RUN apt install -y php php-fpm php-mysql\
+RUN apt install -y php php-fpm php-mysql \
 	php-cli	net-tools curl
 RUN apt -y update
 

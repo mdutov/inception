@@ -12,6 +12,5 @@ sed -i -e "s/\${DB_ROOT_PASSWORD}/${DB_ROOT_PASSWORD}/g" /tmp/createdb.sql
 mysql < /tmp/createdb.sql
 service mysql stop
 fi
-rm -f /tmp/createdb.sql /tmp/50-server.cnf
 
 /usr/bin/mysqld_safe

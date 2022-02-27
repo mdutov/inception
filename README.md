@@ -1,4 +1,4 @@
-## inception
+# inception
 
 project of 42 school where it is necessary to create LEMP via docker-compose on localhost.
 
@@ -10,42 +10,87 @@ also services have volumes on the server for data safety.
 
 ![](inception.png)
 
-### how to use
-before launching `docker` and `docker-compose` should be installed.
+## before using
 
-hostname, password and username for mysql you can find in the `.env` file.
+  before launching you need to:
+  
+  1. install [`docker`](https://docs.docker.com/engine/install/ubuntu/) and [`docker-compose`](https://docs.docker.com/compose/install/) from the official sites and if errors      ocurred you can run folowing commands to change rights of docker sockets:
 
-**to launch the project:**
-```
-make
-```
-go to the site `https://127.0.0.1` to see starting wp page.
+  ```
+  $ sudo chmod 666 /var/run/docker.sock
+  ```
 
-**to check wp admin dashboard:**
+  or/and run *docker* in daemon mode
 
-in wordpress database, there are two users, one of them is the administrator.
+  ```
+  $ sudo service docker start
+  $ sudo systemctl start docker
+  ```
+   
+  2. set *environment variable* in the `.env` file, such as hostname, password and username for mysql database and other functional parts.
 
-visit `https://127.0.0.1/wp-login.php`
+## to launch the project:
 
-`Jack Sparrow` `oaAAz#qyFgQTbUrDW(b*Z1pT`
+  ```
+  make
+  ```
 
-`Captain Salazar` `c7khJJSd0NO8dsT@lAKoHa(#`
+## to enter any \<container\>:
 
-**to check mysql:**
+  ```
+  docker exec -it <container> bash
+  ```
 
-enter mysql container to see existing users.
-```
-docker exec -it mariadb sh
-mysql -h mariadb -u constbar -p
-blackpearl
-use wordpress;
-select * from wp_users;
-```
-**to stop the project:**
+## to stop *containers*:
 
-the next command will also delete all docker images, pay attention.
-```
-make fclean
-sudo rm -rf ../../../constbar
-```
+  ```
+  make stop
+  ```
+  
+## to up *containers*:
 
+  ```
+  make up
+  ```
+
+## to down *containers* (stop and delete):
+
+  ```
+  make down
+  ```
+  
+## to down and immediately up *containers*:
+
+  ```
+  make re
+  ```
+  
+## to stop and delete all traces of the project, including *containers*, *images* and *volumes*:
+
+  ```
+  make fclean
+  ```
+  
+## to down and immediately up all (long time):
+
+  ```
+  make full-fclean
+  ```
+  
+## to get info about current state of *container*, *images*, *volumes* and *networks*:
+
+  ```
+  make info
+  ```
+  
+  or type folowing to get separate information of members_of_the_cluster or all on this Linux:
+  
+  ```
+  make ps # containers in the cluster
+  make docps # all containers
+  make images # images in the cluster
+  make docimages # all images
+  make netls # networks in the cluster
+  make volls # volumes in the cluster
+  make volins # configurations of volumes
+  ```

@@ -1,12 +1,6 @@
 # inception
 
-project of 42 school where it is necessary to create LEMP via docker-compose on localhost.
-
-the linked docker network consists of several services like nginx with TLSv1.3 protocol, wordpress + php-fpm and mariaDB.
-
-each service runs in a separate container with a custom dockerfile.
-
-also services have volumes on the server for data safety.
+deploying a cluster of the WordPress site in Windows on an Ubuntu host (via VirtualBox) on a LEMP stack (Linux, Nginx (TLSv1.3protocol), MySQL, PHP) with allocation of 2 Volumes and use of 3 docker containers managed by Docker Compose, based on YAML file configurations
 
 ![](inception.png)
 

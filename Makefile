@@ -6,14 +6,21 @@
 #    By: tcynthia <tcynthia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 17:12:13 by tcynthia          #+#    #+#              #
-#    Updated: 2021/12/05 17:12:16 by tcynthia         ###   ########.fr        #
+#    Updated: 2022/02/27 18:33:53 by tcynthia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DOCKER-COMPOSE_FILE=./srcs/docker-compose.yml
 HOME=/home/tcynthia
 
+# functional part
+ 
 all: mkdir up
+
+mkdir:
+	sudo mkdir ${HOME}/data || true
+	sudo mkdir ${HOME}/data/mariadb || true
+	sudo mkdir ${HOME}/data/wordpress || true
 
 up:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} up -d
@@ -31,6 +38,11 @@ fclean: down
 	bash remove.sh
 
 full-re: fclean all
+
+# informational part
+
+info:
+	bash info.sh
 
 ps:
 	docker-compose -f ${DOCKER-COMPOSE_FILE} ps
@@ -54,10 +66,7 @@ volins:
 	docker volume inspect mariadb
 	docker volume inspect wordpress
 
-mkdir:
-	sudo mkdir ${HOME}/data || true
-	sudo mkdir ${HOME}/data/mariadb || true
-	sudo mkdir ${HOME}/data/wordpress || true
+# send to github
 
 git:
 	git add .
